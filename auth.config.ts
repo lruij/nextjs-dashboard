@@ -1,10 +1,11 @@
 import type { NextAuthConfig } from 'next-auth';
 
 export const authConfig = {
+  debug: process.env.NODE_ENV !== "production",
   pages: {
     signIn: '/login',
   },
-   callbacks: {
+  callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
